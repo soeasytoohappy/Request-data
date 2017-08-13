@@ -1,0 +1,27 @@
+<div style="text-align: center;" ng-show="isLoading">
+    <img src="images/loading.gif" alt="" style="width: 200px;height: 200px">
+</div>
+
+<div ng-hide="isLoading">
+    <h1 ng-bind="dataList.title">正在上映的电影</h1>
+    <div class="list">
+        <a href="#!/movie/subject/{{value.id}}" ng-repeat="value in dataList.subjects">
+            <dl>
+                <dt><img src="img.png" ng-src="{{value.images.small}}" alt=""></dt>
+                <dd>
+                    <h4>{{value.title}}</h4>
+                    <p>类型: <span class="gen" ng-repeat="genres in value.genres">{{genres}}</span></p>
+                    <p>导演: <span class="gen" ng-repeat="dir in value.directors">{{dir.name}}</span></p>
+                    <p>主演: <span class="gen"  ng-repeat="car in value.casts">{{car.name}}</span></p>
+                </dd>
+                <span class="score">{{value.rating.average}}</span>
+            </dl>
+        </a>
+
+    </div>
+    <div class="page">
+        <span>{{currPage}}/{{totalPage}}</span>
+        <a href="javascript:;" ng-show="prev" ng-click="page(true)">上一页</a>
+        <a href="javascript:;" ng-show="next" ng-click="page(false)">下一页</a>
+    </div>
+</div>

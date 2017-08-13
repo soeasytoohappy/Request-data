@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app" ng-controller="AppController">
+<head>
+    <meta charset="UTF-8">
+    <title ng-bind="title">Title</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .gen{
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+
+    <span>豆瓣电影</span>
+    <div class="search">
+            <input type="text" placeholder="寻找你想要的...">
+            <button>搜索</button>
+    </div>
+
+</div>
+<div class="content">
+    <div class="content_l">
+        <ul>
+            <li class="active"><a href="#!/movie/in_theaters">热门电影</a></li>
+            <li><a href="#!/movie/coming_soon">即将上映</a></li>
+            <li><a href="#!/movie/top250">top250电影</a></li>
+        </ul>
+    </div>
+    <div class="content_r">
+        <div ng-view></div>
+    </div>
+</div>
+<script src="js/angular.js"></script>
+<script src="js/angular-route.js"></script>
+<script src="js/index.js"></script>
+<script src="js/controller/AppController.js"></script>
+<script src="js/controller/HomeController.js"></script>
+<script src="js/controller/DetailController.js"></script>
+<script src="js/config/Route.js"></script>
+<script src="js/http/MyHttp.js"></script>
+
+<!--
+1.在本地声明方法 这个方法里面有一个参数 这个参数就是将来要拿到数据的参数
+2.用 script 的src属性 发送请求实现跨域
+
+
+<script>
+    function test(regs) {
+        console.log(regs)
+    }
+    function test1() {
+
+    }
+</script>
+
+<script src="https://api.douban.com/v2/movie/in_theaters?callback=test"></script>
+
+<script src="https://api.douban.com/v2/movie/top250?callback=test1"></script>
+-->
+
+
+</body>
+</html>
