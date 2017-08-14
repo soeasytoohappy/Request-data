@@ -5,21 +5,25 @@
 
     var app = angular.module('app',['ngRoute']);
 
-
-    // 5.设置白名单
-    // app.config(['$sceDelegateProvider',function ($sceDelegateProvider) {
-    //     $sceDelegateProvider.resourceUrlWhitelist([
-    //         'self',
-    //         'https://api.douban.com/**'
-    //     ])
-    // }]);
-
-    // 跨域  angular
-    // 1.用原生(script)
-    // 2.服务器桥接
-    // https://api.douban.com/v2/movie/in_theaters?callback=angular.callbacks._0
-
-    // http://localhost:63342/code/douban/index.html?_ijt=ugdvjadujnf1ehfvhmpjfcbc7r#!/movie/top250
-    // https://api.douban.com/v2/movie/in_theaters
+//  自定义切换类名的指令
+//  原理:检测location的变化与a标签href属性对比
+    app.directive("navStyle",["$location",function ($location) {
+        return {
+            restrict:"A",
+            link:function ($scope, ele, attr) {
+                $scope.location=$location;
+                // console.log($scope.location.url());
+                $scope.$watch("location.url()",function (newV, oldV) {
+                    // console.log(newV);
+                    var href=ele. find("a").attr("href").slice(2);
+                    // console.log(href);
+                    if (href==newV){
+                        ele.parent().children().removeClass("active");
+                        ele.addClass("active");
+                    }
+                })
+            }
+        }
+    }])
 
 })(angular);
